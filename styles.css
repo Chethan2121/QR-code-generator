@@ -1,0 +1,256 @@
+:root {
+    --primary-color: #ff5f6d;
+    --secondary-color: #ffc371;
+    --background-light: rgba(255, 255, 255, 0.8);
+    --background-dark: #1c1c1c;
+    --text-light: #333;
+    --text-dark: #fff;
+    --input-light: rgba(255, 255, 255, 0.6);
+    --input-dark: rgba(40, 40, 40, 0.8);
+    --card-light: rgba(255, 255, 255, 0.2);
+    --card-dark: rgba(32, 32, 32, 0.8);
+    --border-radius: 12px;
+    --button-gradient: linear-gradient(45deg, #ff5f6d, #ffc371);
+    --button-hover-gradient: linear-gradient(45deg, #ff9966, #ff5e62);
+    --transition-duration: 0.4s;
+}
+
+[data-theme="light"] {
+    --background-color: var(--background-light);
+    --text-color: var(--text-light);
+    --input-background: var(--input-light);
+    --card-background: var(--card-light);
+}
+
+[data-theme="dark"] {
+    --background-color: var(--background-dark);
+    --text-color: var(--text-dark);
+    --input-background: var(--input-dark);
+    --card-background: var(--card-dark);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color var(--transition-duration);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1000px;
+    background: var(--card-background);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    overflow: hidden;
+    transition: background-color var(--transition-duration);
+}
+
+.left, .right {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color var(--transition-duration);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: var(--border-radius);
+    border: none;
+    background: var(--input-background);
+    color: var(--text-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: box-shadow var(--transition-duration), background-color var(--transition-duration), color var(--transition-duration);
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 8px rgba(255, 95, 109, 0.4);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+button {
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    border: none;
+    background: var(--button-gradient);
+    color: #fff;
+    cursor: pointer;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+button:hover {
+    background: var(--button-hover-gradient);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(255, 95, 109, 0.5);
+}
+
+#qrcode-card {
+    background: var(--input-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow var(--transition-duration), transform var(--transition-duration);
+}
+
+#qrcode-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.theme-toggle {
+    position: fixed; /* Use fixed positioning so it stays on top */
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.theme-toggle input {
+    display: none; /* Hide the checkbox */
+}
+
+.theme-toggle label {
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color var(--transition-duration);
+}
+
+.theme-toggle label::after {
+    content: '';
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left var(--transition-duration);
+}
+
+.theme-toggle input:checked + label {
+    background-color: var(--primary-color);
+}
+
+.theme-toggle input:checked + label::after {
+    left: 24px;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+    body {
+        padding: 20px;
+        height: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left, .right {
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    #qrcode-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .left, .right {
+        padding: 15px;
+    }
+}
