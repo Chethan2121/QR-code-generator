@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +25,16 @@
                 <button onclick="generateQRCode()">Generate QR Code</button>
                 <button id="downloadBtn" onclick="downloadQRCode()" style="display: none;">Download QR Code</button>
             </div>
+            <div class="input-group">
+                <input type="file" id="logoInput" accept="image/*">
+                <label>
+                    <input type="radio" name="logoShape" value="box" checked> Box
+                </label>
+                <label>
+                    <input type="radio" name="logoShape" value="rounded"> Rounded
+                </label>
+            </div>
+            
         </div>
         <div class="right">
             <div id="qrcode-card">
